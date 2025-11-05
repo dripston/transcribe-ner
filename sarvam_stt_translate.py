@@ -3,11 +3,16 @@ import wave
 import requests
 import time
 import threading
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Sarvam AI configuration
-API_KEY = "sk_gz32ismn_N0VELj28s3PkmqeIdlO7JRfg"
-API_URL = "https://api.sarvam.ai/speech-to-text-translate"
-MODEL = "saaras:v2.5"
+API_KEY = os.getenv('SARVAM_API_KEY')
+API_URL = os.getenv('SARVAM_API_URL', 'https://api.sarvam.ai/speech-to-text-translate')
+MODEL = os.getenv('SARVAM_MODEL', 'saaras:v2.5')
 
 # Audio recording configuration
 CHUNK = 1024
@@ -119,6 +124,13 @@ def record_audio():
 
 def main():
     """Main function to record audio and translate it"""
+    # Check if API key is available
+    if not API_KEY:
+        print("Error: SARVAM_API_KEY environment variable not set")
+        print("Please set your Sarvam API key in the environment variables")
+        print("Example: export SARVAM_API_KEY=your_key_here")
+        return
+    
     print("Sarvam AI Speech-to-Text Translation")
     print("=====================================")
     
