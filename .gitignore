@@ -1,0 +1,32 @@
+# Environment variables
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+.local
+.pytest_cache/
+.coverage
+.coverage.*
+.cache
+.pytest_cache/
+.pytest_cache_/
+.pytype/
+cython_debug/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
