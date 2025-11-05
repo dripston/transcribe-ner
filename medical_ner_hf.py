@@ -1,5 +1,6 @@
 import requests
 import json
+import os
 from typing import Dict, List, Optional, Any
 
 class MedicalNERHF:
@@ -164,8 +165,14 @@ class MedicalNERHF:
         return medical_entities
 
 def main():
-    # You'll need to get a Hugging Face API token from https://huggingface.co/settings/tokens
-    HF_API_TOKEN = "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"  # Replace with your actual token
+    # Get Hugging Face API token from environment variables
+    HF_API_TOKEN = os.getenv('HF_API_TOKEN')
+    
+    if not HF_API_TOKEN:
+        print("Error: HF_API_TOKEN environment variable not set")
+        print("Please set your Hugging Face API token in the environment variables")
+        print("Example: export HF_API_TOKEN=your_token_here")
+        return
     
     # Initialize the Medical NER
     print("Initializing Medical NER System with Hugging Face API...")
