@@ -20,6 +20,19 @@ HF_API_URL = os.getenv('HF_API_URL', 'https://router.huggingface.co/hf-inference
 
 app = Flask(__name__)
 
+@app.route('/')
+def home():
+    """Home page with API information"""
+    return jsonify({
+        "message": "Medical AI Copilot API",
+        "version": "1.0.0",
+        "endpoints": {
+            "health_check": "/health",
+            "process_audio": "/process_audio"
+        },
+        "description": "Send POST requests with audio files to /process_audio to get transcriptions and medical entity extraction"
+    })
+
 def transcribe_audio_with_sarvam(audio_file_path: str) -> Dict[str, Any]:
     """Transcribe audio using Sarvam AI"""
     try:
