@@ -5,6 +5,7 @@ from flask import Flask, request, jsonify, send_file
 import requests
 from typing import Dict, Any
 from dotenv import load_dotenv
+from flask_cors import CORS
 
 # Load environment variables from .env file
 load_dotenv()
@@ -19,6 +20,7 @@ HF_API_TOKEN = os.getenv('HF_API_TOKEN')
 HF_API_URL = os.getenv('HF_API_URL', 'https://router.huggingface.co/hf-inference/models/d4data/biomedical-ner-all')
 
 app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
 
 @app.route('/')
 def home():
