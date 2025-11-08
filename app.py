@@ -20,8 +20,13 @@ HF_API_TOKEN = os.getenv('HF_API_TOKEN')
 HF_API_URL = os.getenv('HF_API_URL', 'https://router.huggingface.co/hf-inference/models/d4data/biomedical-ner-all')
 
 app = Flask(__name__)
-# Enable CORS for specific origins
-CORS(app, origins=["https://airo-backend.onrender.com", "https://aero2-mu.vercel.app"])
+# Enable CORS for specific origins including localhost for development
+CORS(app, origins=[
+    "https://airo-backend.onrender.com", 
+    "https://aero2-mu.vercel.app",
+    "http://localhost:3000",
+    "http://localhost:3500"
+])
 
 @app.route('/')
 def home():
